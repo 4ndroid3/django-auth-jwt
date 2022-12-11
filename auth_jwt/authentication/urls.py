@@ -1,7 +1,7 @@
-from authentication.views import RegisterView
+from authentication.views import UserView
 from auth_jwt.routers import CustomRouter
 
 router = CustomRouter()
-router.register(r'generos', RegisterView)
+router.register(r'usuario', UserView)
 
 urlpatterns = router.urls
