@@ -1,8 +1,9 @@
 """ Views de authenticacion """
-from rest_framework import mixins, status
+from rest_framework import mixins, status, permissions
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from django.contrib.auth.models import User
+from authentication.authentication import AuthIsPOST
 
 from authentication.serializers import UserSerializer
 
@@ -16,8 +17,7 @@ class UserView(mixins.CreateModelMixin,
     queryset = User.objects.filter()
     lookup_field = 'username'
     serializer_class = UserSerializer
-
-
+    permission_classes = [AuthIsPOST]
 
     def retrieve(self, request, *args, **kwargs):
         """ Override del metodo retrive, si el usuario que solicita
