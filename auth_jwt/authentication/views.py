@@ -1,18 +1,26 @@
 """ Views de authenticacion """
-from rest_framework import mixins, status, permissions
+from rest_framework import (
+    mixins,
+    status,
+    permissions
+)
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from django.contrib.auth.models import User
 
-from authentication.serializers import CreateUserSerializer, UserSerializer
+from authentication.serializers import (
+    CreateUserSerializer,
+    UserSerializer
+)
 
 
 class UserView(mixins.CreateModelMixin,
                mixins.RetrieveModelMixin,
                mixins.UpdateModelMixin,
                GenericViewSet):
-    """API del usuario, puede ver el usuario logueado
-    crear usuarios nuevos, actualizar el usuario logueado"""
+    """API del usuario, puede ver el usuario
+    logueado y actualizar el mismo"""
+
     queryset = User.objects.filter()
     lookup_field = 'username'
     serializer_class = UserSerializer
