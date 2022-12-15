@@ -24,6 +24,8 @@ class UserView(mixins.CreateModelMixin,
     queryset = User.objects.filter()
     lookup_field = 'username'
     serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
 
     def retrieve(self, request, *args, **kwargs):
         """ Override del metodo retrive, si el usuario que solicita
